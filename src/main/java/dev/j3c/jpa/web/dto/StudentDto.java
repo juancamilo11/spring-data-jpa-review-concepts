@@ -3,6 +3,7 @@ package dev.j3c.jpa.web.dto;
 import dev.j3c.jpa.helpers.annotations.EmailDomain;
 import dev.j3c.jpa.model.entities.Course;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +13,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder(toBuilder = true)
 public class StudentDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -40,6 +43,6 @@ public class StudentDto implements Serializable {
     private String email;
 
     @NotNull(message = "Course list cannot be null")
-    private HashSet<Course> courseList;
+    private Set<Course> courseList;
 
 }

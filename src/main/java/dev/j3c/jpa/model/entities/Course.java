@@ -1,6 +1,7 @@
 package dev.j3c.jpa.model.entities;
 
 import dev.j3c.jpa.helpers.annotations.CourseCode;
+import dev.j3c.jpa.helpers.enums.EnumCareers;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,6 +47,12 @@ public class Course {
     })
     @JoinColumn(name = "courseList")
     private Teacher teacher;
+
+    @Column(name = "career",
+            nullable = false,
+            updatable = true)
+    @Enumerated(value = EnumType.STRING)
+    private EnumCareers career;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")

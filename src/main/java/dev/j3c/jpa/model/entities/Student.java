@@ -1,10 +1,7 @@
 package dev.j3c.jpa.model.entities;
 
 import dev.j3c.jpa.helpers.annotations.EmailDomain;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -15,8 +12,10 @@ import java.util.Set;
 @Table(name = "student")
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
 public class Student {
 
     @Id
@@ -59,6 +58,7 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
+    @ToString.Exclude
     private Set<Course> courseList;
 
     @Override
@@ -73,7 +73,5 @@ public class Student {
     public int hashCode() {
         return getIdentification().hashCode();
     }
-
-
 
 }
