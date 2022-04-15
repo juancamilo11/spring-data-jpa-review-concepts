@@ -1,10 +1,14 @@
 package dev.j3c.jpa.model.entities;
 
-import lombok.*;
+import dev.j3c.jpa.helpers.annotations.EmailDomain;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,6 +42,7 @@ public class Teacher {
 
     @Column(name = "age",
             nullable = false)
+    @Min(value = 1, message = "Min age must be greater than 0.")
     private int age;
 
     @Column(name = "email",
@@ -45,6 +50,7 @@ public class Teacher {
             updatable = false,
             unique = true,
             length = 100)
+    @EmailDomain(value = "udea.edu.co", message = "Email domain must be 'udea.edu.co'")
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)

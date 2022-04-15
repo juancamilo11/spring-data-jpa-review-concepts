@@ -7,8 +7,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.lang.annotation.Documented;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "course")
@@ -46,11 +49,11 @@ public class Course {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
-    private List<CourseReview> courseReviewList;
+    private Set<CourseReview> courseReviewList;
 
     public void addCourseReview(CourseReview courseReview) {
         if(this.courseReviewList == null) {
-            this.courseReviewList = new ArrayList<>();
+            this.courseReviewList = new HashSet<>();
         }
         this.courseReviewList.add(courseReview);
     }

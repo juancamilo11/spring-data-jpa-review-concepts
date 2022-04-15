@@ -7,7 +7,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "student")
@@ -41,6 +43,7 @@ public class Student {
 
     @Column(name = "age",
             nullable = false)
+    @Min(value = 1, message = "Min age must be greater than 0.")
     private int age;
 
     @Column(name = "email",
@@ -56,7 +59,7 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private List<Course> courseList;
+    private Set<Course> courseList;
 
     @Override
     public boolean equals(Object object) {
