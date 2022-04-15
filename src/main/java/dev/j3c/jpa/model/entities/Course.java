@@ -1,5 +1,6 @@
 package dev.j3c.jpa.model.entities;
 
+import dev.j3c.jpa.helpers.annotations.CourseCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,13 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "course_code",
+            nullable = false,
+            updatable = false,
+            length = 50)
+    @CourseCode(value = "UdeA-", message = "Course code must start with 'UdeA-'")
+    private String courseCode;
 
     @Column(name = "name",
             nullable = false,

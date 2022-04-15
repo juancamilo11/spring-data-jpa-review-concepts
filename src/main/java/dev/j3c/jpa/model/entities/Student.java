@@ -1,5 +1,6 @@
 package dev.j3c.jpa.model.entities;
 
+import dev.j3c.jpa.helpers.annotations.EmailDomain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -47,6 +48,7 @@ public class Student {
             updatable = false,
             unique = true,
             length = 100)
+    @EmailDomain(value = "udea.edu.co", message = "Email domain must be 'udea.edu.co'")
     private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)
