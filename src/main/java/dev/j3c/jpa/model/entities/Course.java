@@ -2,10 +2,7 @@ package dev.j3c.jpa.model.entities;
 
 import dev.j3c.jpa.helpers.annotations.CourseCode;
 import dev.j3c.jpa.helpers.enums.EnumCareers;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.lang.annotation.Documented;
@@ -20,6 +17,8 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @ToString
+@AllArgsConstructor
+@Builder(toBuilder = true)
 public class Course {
 
     @Id
@@ -29,14 +28,12 @@ public class Course {
 
     @Column(name = "course_code",
             nullable = false,
-            updatable = false,
-            length = 50)
-    @CourseCode(value = "UdeA-", message = "Course code must start with 'UdeA-'")
+            updatable = false)
+//    @CourseCode(value = "UdeA", message = "Course code must start with 'UdeA-'")
     private String courseCode;
 
     @Column(name = "name",
-            nullable = false,
-            length = 50)
+            nullable = false)
     private String name;
 
     @ManyToOne(cascade = {
@@ -49,13 +46,14 @@ public class Course {
     private Teacher teacher;
 
     @Column(name = "career",
-            nullable = false,
+            nullable = true,
             updatable = true)
     @Enumerated(value = EnumType.STRING)
     private EnumCareers career;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
+    @ToString.Exclude
     private Set<CourseReview> courseReviewList;
 
     public void addCourseReview(CourseReview courseReview) {
@@ -72,12 +70,12 @@ public class Course {
 
         Course course = (Course) object;
 
-        return getId().equals(course.getId());
+        return getCourseCode().equals(course.getCourseCode());
     }
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        return getCourseCode().hashCode();
     }
 
 

@@ -1,9 +1,6 @@
 package dev.j3c.jpa.model.entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,6 +12,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@Builder(toBuilder = true)
 public class CourseReview {
 
     @Id
@@ -36,17 +35,17 @@ public class CourseReview {
     private LocalDateTime date;
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof CourseReview)) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CourseReview)) return false;
 
-        CourseReview that = (CourseReview) object;
+        CourseReview that = (CourseReview) o;
 
-        return getId().equals(that.getId());
+        return getId() != null ? getId().equals(that.getId()) : that.getId() == null;
     }
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        return getId() != null ? getId().hashCode() : 0;
     }
 }

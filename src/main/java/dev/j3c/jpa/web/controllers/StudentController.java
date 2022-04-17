@@ -49,7 +49,7 @@ public class StudentController {
     }
 
     @DeleteMapping(value = "/put/student/{id}")
-    public ResponseEntity<String> deleteStudentById(@PathVariable("id") Long id, @RequestBody StudentDto studentDto) {
+    public ResponseEntity<String> deleteStudentById(@PathVariable("id") Long id) {
         this.studentService.deleteStudentById(id);
         return ResponseEntity.ok().build();
     }

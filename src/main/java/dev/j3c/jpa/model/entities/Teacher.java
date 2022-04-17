@@ -1,10 +1,7 @@
 package dev.j3c.jpa.model.entities;
 
 import dev.j3c.jpa.helpers.annotations.EmailDomain;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -13,10 +10,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "teacher")
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
 public class Teacher {
 
     @Id
@@ -26,18 +25,15 @@ public class Teacher {
 
     @Column(name = "identification",
             nullable = false,
-            updatable = false,
-            length = 50)
+            updatable = false)
     private String identification;
 
     @Column(name = "first_name",
-            nullable = false,
-            length = 50)
+            nullable = false)
     private String firstName;
 
     @Column(name = "last_name",
-            nullable = false,
-            length = 50)
+            nullable = false)
     private String lastName;
 
     @Column(name = "age",

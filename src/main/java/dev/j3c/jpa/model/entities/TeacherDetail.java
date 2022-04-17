@@ -1,9 +1,6 @@
 package dev.j3c.jpa.model.entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@Builder(toBuilder = true)
 public class TeacherDetail {
 
     @Id
@@ -34,7 +33,7 @@ public class TeacherDetail {
     })
     private Teacher teacher;
 
-    public TeacherDetail remoteTeacherDetail() {
+    public TeacherDetail removeTeacherDetail() {
         this.getTeacher()
                 .setTeacherDetail(null);
         return this;

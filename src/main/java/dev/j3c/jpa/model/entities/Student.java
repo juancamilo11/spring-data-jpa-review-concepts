@@ -26,18 +26,15 @@ public class Student {
     @Column(name = "identification",
             nullable = false,
             updatable = false,
-            length = 50,
             unique = true)
     private String identification;
 
     @Column(name = "first_name",
-            nullable = false,
-            length = 50)
+            nullable = false)
     private String firstName;
 
     @Column(name = "last_name",
-            nullable = false,
-            length = 50)
+            nullable = false)
     private String lastName;
 
     @Column(name = "age",
@@ -48,8 +45,7 @@ public class Student {
     @Column(name = "email",
             nullable = false,
             updatable = false,
-            unique = true,
-            length = 100)
+            unique = true)
     @EmailDomain(value = "udea.edu.co", message = "Email domain must be 'udea.edu.co'")
     private String email;
 
