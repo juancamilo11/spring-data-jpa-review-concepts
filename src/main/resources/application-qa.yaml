@@ -1,10 +1,10 @@
 #
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/prodDB
+    url: mysql:jdbc://localhost:127.0.0.1:3306/collateDBQaEnv/useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: admin
-    password: admin123
+    username: qaadmin
+    password: admin123QA
 
   jpa:
     hibernate:
